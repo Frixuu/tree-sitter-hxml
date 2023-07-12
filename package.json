@@ -1,0 +1,27 @@
+{
+  "name": "tree-sitter-hxml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+		"test":  "tree-sitter test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8",
+    "node-gyp": "^9.4.0"
+  },
+	"tree-sitter": [{
+		"file-types": [
+			"hxml"
+		],
+		"highlights": [
+			"queries/highlights.scm"
+		],
+		"scope": "source.hxml"
+	}]
+}

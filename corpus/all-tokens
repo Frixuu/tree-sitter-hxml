@@ -1,0 +1,191 @@
+=====
+_untested
+=====
+
+--cmd command
+--remap package:target
+--macro macro
+-C directory
+--cwd directory
+--haxelib-global
+--dce std
+--dce full
+--dce no
+--xml file
+--json file
+--swf-version version
+--swf-header header
+--flash-strict
+--swf-lib file
+--swf-lib-extern file
+--java-lib file
+--java-lib-extern file
+--net-lib file
+--net-lib file@std
+--net-std file
+--c-arg arg
+
+=====
+Class Path
+=====
+
+-cp path
+-p path
+--class-path path
+
+---
+
+(hxml_content
+	(class_path (text))
+	(class_path (text))
+	(class_path (text)))
+
+======
+Connect
+======
+
+--connect 0000
+--connect host:0000
+
+---
+
+(hxml_content
+	(connect (number))
+	(connect (text) (number)))
+
+======
+Define
+======
+
+-D var
+-D var=value
+--define var
+--define var=value
+
+---
+
+(hxml_content
+	(define (text))
+	(define (text) (value))
+	(define (text))
+	(define (text) (value)))
+
+=======
+Library
+=======
+
+-L name
+-L name:0.0.0
+--library name
+--library name:0.0.0
+
+---
+
+(hxml_content
+	(library (text))
+	(library (text) (value))
+	(library (text))
+	(library (text) (value)))
+
+=====
+Main
+=====
+
+-m class
+--main class
+
+---
+
+(hxml_content
+	(main (text))
+	(main (text)))
+
+======
+Output
+======
+
+--js file
+--lua file
+--swf file
+--neko file
+--php directory
+--cpp directory
+--cppia file
+--cs directory
+--java directory
+--jvm file
+--python file
+--hl file
+--interp
+--run module
+--run module arg
+--run module arg arg arg
+
+---
+
+(hxml_content
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output (text))
+	(output)
+	(output (text))
+	(output (text) (text))
+	(output (text) (text) (text) (text)))
+
+======
+Resource
+======
+
+-r file
+-r file@name
+--resource file
+--resource file@name
+
+---
+
+(hxml_content
+	(resource (text))
+	(resource (text) (text))
+	(resource (text))
+	(resource (text) (text)))
+
+=====
+Server Connect
+=====
+
+--server-connect
+--server-connect 0000
+--server-connect host:0000
+
+---
+
+(hxml_content
+	(server_connect)
+	(server_connect (number))
+	(server_connect (text) (number)))
+
+=====
+Server Listen
+=====
+
+--server-listen
+--server-listen 0000
+--server-listen host:0000
+--server-listen stdio
+
+---
+
+(hxml_content
+	(server_listen)
+	(server_listen (number))
+	(server_listen (text) (number))
+	(server_listen))

@@ -1,0 +1,73 @@
+==========
+Example #1
+==========
+
+--class-path src
+--dce full
+--js bin/homepage.js
+--main website.HomePage
+
+---
+
+(hxml_content
+	(next
+		(class_path (text))
+		(dce )
+		(output (text))
+		(main (text))))
+
+==========
+Example #2
+==========
+
+--class-path src
+--dce full
+
+--each
+
+--js bin/homepage.js
+--main website.HomePage
+
+--next
+
+--js bin/gallery.js
+--main website.GalleryPage
+
+--next
+
+--js bin/contact.js
+--main website.ContactPage
+
+---
+
+(hxml_content
+	(each
+		(class_path (text))
+		(dce))
+	(next
+		(output (text))
+		(main (text)))
+	(next
+		(output (text))
+		(main (text)))
+	(next
+		(output (text))
+		(main (text))))
+
+=========
+Example #3
+=========
+
+build-server.hxml
+--next
+build-website.hxml
+--next
+build-game.hxml
+
+---
+
+(hxml_content
+	(next (hxml_file))
+	(next (hxml_file))
+	(next (hxml_file)))
+	

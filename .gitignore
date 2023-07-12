@@ -1,0 +1,9 @@
+# node stuff
+node_modules/
+
+# generated files
+build/
+src/
+bindings/
+build.gyp
+Cargo.toml
