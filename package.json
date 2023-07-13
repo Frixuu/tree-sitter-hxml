@@ -4,6 +4,7 @@
   "description": "",
   "main": "bindings/node",
   "scripts": {
+		"setup": "node-gyp configure",
     "build": "tree-sitter generate && node-gyp build",
 		"test":  "tree-sitter test"
   },

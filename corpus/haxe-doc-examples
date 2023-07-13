@@ -10,11 +10,10 @@ Example #1
 ---
 
 (hxml_content
-	(next
-		(class_path (text))
-		(dce )
-		(output (text))
-		(main (text))))
+	(class_path (text))
+	(dce )
+	(output (text))
+	(main (text)))
 
 ==========
 Example #2
@@ -41,18 +40,20 @@ Example #2
 ---
 
 (hxml_content
-	(each
 		(class_path (text))
-		(dce))
-	(next
+		(dce)
+		(each)
+
+		(output (text))
+		(main (text))
+		(next)
+
+		(output (text))
+		(main (text))
+		(next)
+
 		(output (text))
 		(main (text)))
-	(next
-		(output (text))
-		(main (text)))
-	(next
-		(output (text))
-		(main (text))))
 
 =========
 Example #3
@@ -67,7 +68,9 @@ build-game.hxml
 ---
 
 (hxml_content
-	(next (hxml_file))
-	(next (hxml_file))
-	(next (hxml_file)))
+	(hxml_file)
+	(next)
+	(hxml_file)
+	(next)
+	(hxml_file))
 	

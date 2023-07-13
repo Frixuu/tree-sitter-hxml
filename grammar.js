@@ -4,8 +4,12 @@ module.exports = grammar({
 	rules: {
 
 		// TODO: put `next` back in here.
-		hxml_content: $ => repeat($._section),
+		hxml_content: $ => repeat($._line),
 
+/*
+
+THE OLD WAY THAT I WANT TO DO THIS, I WANT TO USE THE
+--NEXT AND --EACH TO BE LIKE A SCOPE
 		/////////////////////
 		_section: $ => choice(
 			prec(1,$.each),
@@ -22,6 +26,9 @@ module.exports = grammar({
 			repeat1($._line),
 			'--each'
 		),
+*/
+		next: $ => '--next',
+		each: $ => '--each',
 
 		/////////////////////
 		_line: $ => choice(
@@ -30,6 +37,8 @@ module.exports = grammar({
 			$.remap, $.server_listen, $.server_connect,
 			$.connect,
 
+			$.next, $.each,
+
 			prec.right(10,$.no_param),
 			prec.right(11,$.one_param)
 		),
@@ -37,33 +46,39 @@ module.exports = grammar({
 		hxml_file: $ => field('hxml_file', /.*\.hxml/),
 
 		/////////////////////
-		_class_path_id: $ => choice('--class-path','-cp','-p'),
+		class_path_id: $ => choice('--class-path','-cp','-p'),
 		class_path: $ => seq(
-			$._class_path_id, $._ws, field('class_path', $.text)
+			$.class_path_id, $._ws, field('class_path', $.text)
 		),
 
 		////////////////////
-		_target: $ => choice('--js', '--swf', '--neko', '--php', '--cpp',
+		output_id: $ => choice('--js', '--swf', '--neko', '--php', '--cpp',
 			'--cs', '--java', '--jvm', '--python', '--lua', '--hl',
 			'--cppia', '-x'
 		),
+		output_id_no_value: $ => choice('--no-output', '--interp'),
+		output_id_run: $ => '--run',
 		output: $ => choice(
-			seq($._target, $._ws, field('target', $.text)),
-			'--no-output', '--interp',
-			seq('--run', repeat1(seq(' ', $.text)))
+			seq($.output_id, field('target', $.text)),
+			$.output_id_no_value,
+			seq($.output_id_run, field('main', $.text), repeat($.text))
 		),
 
 		/////////////////////
-		dce_kind: $ => choice('std', 'full', 'no'),
-		dce: $ => seq('--dce', $._ws, field("dce", $.dce_kind)),
+		dce_id: $ => '--dce',
+		dce: $ => seq(
+			$.dce_id,
+			field("dce", choice('std', 'full', 'no'))
+		),
 
 		////////////////////
-		_main_id: $ => choice('--main', '-m'),
-		main: $ => seq($._main_id, $._ws, field('main', $.text)),
+		main_id: $ => choice('--main', '-m'),
+		main: $ => seq($.main_id, field('main', $.text)),
 
 		////////////////////
+		library_id: $ => choice('-L', '--library'),
 		library: $ => seq(
-			choice('-L', '--library'),
+			$.library_id,
 			field('library', seq(
 				field("name", $.text),
 				optional(seq(":",field("version", $.value)))
@@ -71,8 +86,9 @@ module.exports = grammar({
 		),
 
 		////////////////////
+		define_id: $ => choice('-D', '--define'),
 		define: $ => seq(
-			choice('-D', '--define'),
+			$.define_id,
 			field('define', seq(
 				field("var",$.text),
 				optional(seq("=",field("value", $.value)))
@@ -80,8 +96,9 @@ module.exports = grammar({
 		),
 
 		////////////////////
+		resource_id: $ => choice('-r', '--resource'),
 		resource: $ => seq(
-			choice('-r', '--resource'),
+			$.resource_id,
 			field('resource',seq(
 				field("file",$.text),
 				optional(seq("@",field("name", $.text)))
@@ -89,16 +106,18 @@ module.exports = grammar({
 		),
 
 		////////////////////
+		remap_id: $ => '--remap',
 		remap: $ => seq(
-			'--remap',
+			$.remap_id,
 			field("package",$.text),
 			":",
 			field("target", $.text)
 		),
 
 		////////////////////
+		server_listen_id: $ => '--server-listen',
 		server_listen: $ => seq(
-			'--server-listen',
+			$.server_listen_id,
 			optional(choice(
 				'stdio',
 				field("port", $.number),
@@ -111,8 +130,9 @@ module.exports = grammar({
 		),
 
 		///////////////////////////
+		server_connect_id: $ => '--server-connect',
 		server_connect: $ => seq(
-			'--server-connect',
+			$.server_connect_id,
 			optional(choice(
 				field("port", $.number),
 				seq(
@@ -124,8 +144,9 @@ module.exports = grammar({
 		),
 
 		///////////////////////////
+		connect_id: $ => '--connect',
 		connect: $ => seq(
-			'--connect',
+			$.connect_id,
 			optional(choice(
 				field("port", $.number),
 				seq(

@@ -1,27 +1,26 @@
-[ "--each" "--next" ] @repeat
+[
+	(class_path_id)
+	(connect_id)
+	(dce_id)
+	(define_id)
+	(library_id)
+	(main_id)
+	(output_id)
+	(output_id_no_value)
+	(output_id_run)
+	(remap_id)
+	(resource_id)
+	(server_connect_id)
+	(server_listen_id)
 
-(class_path
-	class_path: (text) @string
-	) @keyword
+	(no_param)
+] @keyword
 
-(dce
-	dce: (dce_kind) @type
-	) @keyword
+[
+ ":"
+ "="
+ "@"
+] @keyword.operator
 
-(hxml_file) @include
-
-(library
-	name: (text) @variable
-	) @keyword
-(library
-	name: (text) @variable
-	version: (value) @number
-	) @keyword
-
-(main
-	main: (text) @string
-	) @keyword
-
-(output
-	target: (text) @string
-	) @keyword
+(text) @string
+(value) @number
