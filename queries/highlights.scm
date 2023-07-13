@@ -16,6 +16,8 @@
 	(no_param)
 ] @keyword
 
+(comment) @comment
+
 [
  ":"
  "="
@@ -24,3 +26,4 @@
 
 (text) @string
 (value) @number
+(number) @number

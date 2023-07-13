@@ -35,7 +35,7 @@ THE OLD WAY THAT I WANT TO DO THIS, I WANT TO USE THE
 			$.class_path, $.dce, $.main, $.output,
 			$.hxml_file, $.library, $.define, $.resource,
 			$.remap, $.server_listen, $.server_connect,
-			$.connect,
+			$.connect, $.comment,
 
 			$.next, $.each,
 
@@ -155,6 +155,12 @@ THE OLD WAY THAT I WANT TO DO THIS, I WANT TO USE THE
 					field("port", $.number)
 				)
 			))
+		),
+
+		//////////////////////////
+		comment: $ => seq(
+			'#',
+			/.+/
 		),
 
 
