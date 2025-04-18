@@ -153,7 +153,15 @@
                 "members": [
                   {
                     "type": "STRING",
+                    "value": "-js"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--js"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-swf"
                   },
                   {
                     "type": "STRING",
@@ -161,7 +169,15 @@
                   },
                   {
                     "type": "STRING",
+                    "value": "-neko"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--neko"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-jvm"
                   },
                   {
                     "type": "STRING",
@@ -169,7 +185,15 @@
                   },
                   {
                     "type": "STRING",
+                    "value": "-python"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--python"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-lua"
                   },
                   {
                     "type": "STRING",
@@ -177,7 +201,15 @@
                   },
                   {
                     "type": "STRING",
+                    "value": "-hl"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--hl"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-cppia"
                   },
                   {
                     "type": "STRING",
@@ -212,7 +244,15 @@
                 "members": [
                   {
                     "type": "STRING",
+                    "value": "-php"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--php"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-cpp"
                   },
                   {
                     "type": "STRING",
@@ -220,7 +260,15 @@
                   },
                   {
                     "type": "STRING",
+                    "value": "-cs"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "--cs"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "-java"
                   },
                   {
                     "type": "STRING",
@@ -366,7 +414,7 @@
         },
         {
           "type": "FIELD",
-          "name": "main",
+          "name": "class",
           "content": {
             "type": "SYMBOL",
             "name": "text"
@@ -917,6 +965,10 @@
             },
             {
               "type": "STRING",
+              "value": "-help"
+            },
+            {
+              "type": "STRING",
               "value": "-h"
             }
           ]
@@ -950,8 +1002,17 @@
           "value": "--no-traces"
         },
         {
-          "type": "STRING",
-          "value": "--prompt"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--prompt"
+            },
+            {
+              "type": "STRING",
+              "value": "-prompt"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -967,6 +1028,19 @@
             {
               "type": "STRING",
               "value": "-v"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--version"
+            },
+            {
+              "type": "STRING",
+              "value": "-version"
             }
           ]
         }
@@ -990,6 +1064,23 @@
         {
           "type": "STRING",
           "value": "-p"
+        },
+        {
+          "type": "STRING",
+          "value": "-libcp"
+        }
+      ]
+    },
+    "flag_cmd": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--cmd"
+        },
+        {
+          "type": "STRING",
+          "value": "-cmd"
         }
       ]
     },
@@ -1011,8 +1102,17 @@
       ]
     },
     "flag_dce": {
-      "type": "STRING",
-      "value": "--dce"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--dce"
+        },
+        {
+          "type": "STRING",
+          "value": "-dce"
+        }
+      ]
     },
     "flag_define": {
       "type": "CHOICE",
@@ -1027,13 +1127,39 @@
         }
       ]
     },
+    "flag_hxb": {
+      "type": "STRING",
+      "value": "--hxb"
+    },
+    "flag_hxb_lib": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--hxb-lib"
+        },
+        {
+          "type": "STRING",
+          "value": "-hxb-lib"
+        }
+      ]
+    },
     "flag_java_lib_extern": {
       "type": "STRING",
       "value": "--java-lib-extern"
     },
     "flag_java_lib": {
-      "type": "STRING",
-      "value": "--java-lib"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--java-lib"
+        },
+        {
+          "type": "STRING",
+          "value": "-java-lib"
+        }
+      ]
     },
     "flag_json": {
       "type": "STRING",
@@ -1069,9 +1195,17 @@
         },
         {
           "type": "STRING",
+          "value": "-main"
+        },
+        {
+          "type": "STRING",
           "value": "-m"
         }
       ]
+    },
+    "flag_neko_lib_path": {
+      "type": "STRING",
+      "value": "--neko-lib-path"
     },
     "flag_net_lib": {
       "type": "STRING",
@@ -1090,45 +1224,103 @@
       "members": [
         {
           "type": "STRING",
-          "value": "-r"
+          "value": "--resource"
         },
         {
           "type": "STRING",
-          "value": "--resource"
+          "value": "-resource"
+        },
+        {
+          "type": "STRING",
+          "value": "-r"
         }
       ]
     },
     "flag_server_connect": {
-      "type": "STRING",
-      "value": "--server-connect"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--server-connect"
+        },
+        {
+          "type": "STRING",
+          "value": "--wait"
+        }
+      ]
     },
     "flag_server_listen": {
       "type": "STRING",
       "value": "--server-listen"
     },
     "flag_swf_header": {
-      "type": "STRING",
-      "value": "--swf-header"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--swf-header"
+        },
+        {
+          "type": "STRING",
+          "value": "-swf-header"
+        }
+      ]
     },
     "flag_swf_lib_extern": {
-      "type": "STRING",
-      "value": "--swf-lib-extern"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--swf-lib-extern"
+        },
+        {
+          "type": "STRING",
+          "value": "-swf-lib-extern"
+        }
+      ]
     },
     "flag_swf_lib": {
-      "type": "STRING",
-      "value": "--swf-lib"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--swf-lib"
+        },
+        {
+          "type": "STRING",
+          "value": "-swf-lib"
+        }
+      ]
     },
     "flag_swf_version": {
-      "type": "STRING",
-      "value": "--swf-version"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--swf-version"
+        },
+        {
+          "type": "STRING",
+          "value": "-swf-version"
+        }
+      ]
     },
     "flag_warning": {
       "type": "STRING",
       "value": "-w"
     },
     "flag_xml": {
-      "type": "STRING",
-      "value": "--xml"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--xml"
+        },
+        {
+          "type": "STRING",
+          "value": "-xml"
+        }
+      ]
     },
     "flag": {
       "type": "CHOICE",

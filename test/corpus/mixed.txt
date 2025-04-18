@@ -28,3 +28,22 @@ Mixed LSP config #1
     (library (flag) name: (identifier) url: (url) ref: (text))
     (macro (flag) expression: (haxe_expression))
 )
+
+==========
+Mixed LSP config #2
+==========
+
+-cp tests
+-main Test
+--define no-deprecation-warnings
+--macro nullSafety("foobar._internal.ds", StrictThreaded)
+-hl test.hl
+---
+
+(hxml
+    (class_path (flag) path: (text))
+    (main (flag) class: (text))
+    (define (flag) var: (text))
+    (macro (flag) expression: (haxe_expression))
+    (output (flag) file: (text))
+)
