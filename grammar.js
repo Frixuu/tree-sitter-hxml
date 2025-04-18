@@ -3,7 +3,7 @@
 
 export default grammar({
     name: "hxml",
-
+    extras: _ => [/\s/],
     rules: {
         hxml: $ => repeat($._line),
         next: $ => "--next",
@@ -88,20 +88,24 @@ export default grammar({
                     seq(
                         token.immediate(":"),
                         choice(
-                            $._library_git_version,
-                            $._library_haxelib_version,
+                            // Haxelib
+                            field("version", $.version),
+
+                            // Git
+                            prec.left(
+                                seq(
+                                    token.immediate("git:"),
+                                    field("url", $.url),
+                                    optional(
+                                        seq(
+                                            token.immediate("#"),
+                                            field("ref", $.text),
+                                        ),
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
-                ),
-            ),
-
-        _library_haxelib_version: $ => field("version", $.version),
-
-        _library_git_version: $ =>
-            prec.left(
-                seq(
-                    field("url", $.url),
-                    optional(seq("#", field("ref", $.text))),
                 ),
             ),
 
@@ -222,7 +226,7 @@ export default grammar({
         ////////////////////
 
         identifier: $ => /[a-zA-Z_]+[a-zA-Z0-9]*/,
-        url: _ => /[^\#]+/,
+        url: _ => /[^(\#\s)]+/,
         version: _ => /[0-9]+\.[0-9]+\.[0-9]+/,
 
         text: $ => /[\\.A-Za-z\/_-]+/,

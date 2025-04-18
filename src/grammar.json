@@ -409,12 +409,64 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "_library_git_version"
+                      "type": "FIELD",
+                      "name": "version",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "version"
+                      }
                     },
                     {
-                      "type": "SYMBOL",
-                      "name": "_library_haxelib_version"
+                      "type": "PREC_LEFT",
+                      "value": 0,
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "IMMEDIATE_TOKEN",
+                            "content": {
+                              "type": "STRING",
+                              "value": "git:"
+                            }
+                          },
+                          {
+                            "type": "FIELD",
+                            "name": "url",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "url"
+                            }
+                          },
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SEQ",
+                                "members": [
+                                  {
+                                    "type": "IMMEDIATE_TOKEN",
+                                    "content": {
+                                      "type": "STRING",
+                                      "value": "#"
+                                    }
+                                  },
+                                  {
+                                    "type": "FIELD",
+                                    "name": "ref",
+                                    "content": {
+                                      "type": "SYMBOL",
+                                      "name": "text"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     }
                   ]
                 }
@@ -426,56 +478,6 @@
           ]
         }
       ]
-    },
-    "_library_haxelib_version": {
-      "type": "FIELD",
-      "name": "version",
-      "content": {
-        "type": "SYMBOL",
-        "name": "version"
-      }
-    },
-    "_library_git_version": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "url",
-            "content": {
-              "type": "SYMBOL",
-              "name": "url"
-            }
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "#"
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "ref",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "text"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
-      }
     },
     "define_id": {
       "type": "CHOICE",
@@ -935,7 +937,7 @@
     },
     "url": {
       "type": "PATTERN",
-      "value": "[^\\#]+"
+      "value": "[^(\\#\\s)]+"
     },
     "version": {
       "type": "PATTERN",

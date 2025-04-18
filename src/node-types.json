@@ -768,6 +768,10 @@
     "named": false
   },
   {
+    "type": "git:",
+    "named": false
+  },
+  {
     "type": "haxe_expression",
     "named": true
   },
