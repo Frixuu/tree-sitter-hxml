@@ -18,13 +18,13 @@ Mixed LSP config #1
 ---
 
 (hxml
-    (class_path path: (text))
-    (class_path path: (text))
-    (output directory: (text))
-    (output)
-    (library name: (identifier))
-    (library name: (identifier) version: (version))
-    (library name: (identifier) url: (url))
-    (library name: (identifier) url: (url) ref: (text))
-    (macro (haxe_expression))
+    (class_path (flag) path: (text))
+    (class_path (flag) path: (text))
+    (output (flag) directory: (text))
+    (output (flag))
+    (library (flag) name: (identifier))
+    (library (flag) name: (identifier) version: (version))
+    (library (flag) name: (identifier) url: (url))
+    (library (flag) name: (identifier) url: (url) ref: (text))
+    (macro (flag) expression: (haxe_expression))
 )

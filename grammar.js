@@ -37,52 +37,56 @@ export default grammar({
 
         hxml_file: $ => field("hxml_file", /.*\.hxml/),
 
-        /////////////////////
         class_path: $ =>
-            seq(
-                choice("--class-path", "-cp", "-p"),
-                $._ws,
-                field("path", $.text),
-            ),
+            seq(alias($.flag_class_path, $.flag), $._ws, field("path", $.text)),
 
         ////////////////////
         output: $ =>
             choice(
                 seq(
-                    choice(
-                        "--js",
-                        "--swf",
-                        "--neko",
-                        "--jvm",
-                        "--python",
-                        "--lua",
-                        "--hl",
-                        "--cppia",
-                        "-x",
+                    alias(
+                        choice(
+                            "--js",
+                            "--swf",
+                            "--neko",
+                            "--jvm",
+                            "--python",
+                            "--lua",
+                            "--hl",
+                            "--cppia",
+                            "-x",
+                        ),
+                        $.flag,
                     ),
                     field("file", $.text),
                 ),
                 seq(
-                    choice("--php", "--cpp", "--cs", "--java"),
+                    alias(choice("--php", "--cpp", "--cs", "--java"), $.flag),
                     field("directory", $.text),
                 ),
-                seq(choice("--custom-target", "-custom"), $.text),
-                choice("--no-output", "--interp"),
-                seq("--run", field("main", $.text), repeat($.text)),
+                seq(
+                    alias(choice("--custom-target", "-custom"), $.flag),
+                    $.text,
+                ),
+                alias(choice("--no-output", "--interp"), $.flag),
+                seq(
+                    alias("--run", $.flag),
+                    field("main", $.text),
+                    repeat($.text),
+                ),
             ),
 
-        /////////////////////
-        dce_id: $ => "--dce",
-        dce: $ => seq($.dce_id, field("dce", choice("std", "full", "no"))),
+        dce: $ =>
+            seq(
+                alias($.flag_dce, $.flag),
+                field("mode", choice("std", "full", "no")),
+            ),
 
-        ////////////////////
-        main_id: $ => choice("--main", "-m"),
-        main: $ => seq($.main_id, field("main", $.text)),
+        main: $ => seq(alias($.flag_main, $.flag), field("main", $.text)),
 
-        ////////////////////
         library: $ =>
             seq(
-                choice("--library", "-lib", "-L"),
+                alias($.flag_library, $.flag),
                 field("name", $.identifier),
                 optional(
                     seq(
@@ -109,11 +113,9 @@ export default grammar({
                 ),
             ),
 
-        ////////////////////
-        define_id: $ => choice("-D", "--define"),
         define: $ =>
             seq(
-                $.define_id,
+                alias($.flag_define, $.flag),
                 field(
                     "define",
                     seq(
@@ -123,11 +125,9 @@ export default grammar({
                 ),
             ),
 
-        ////////////////////
-        resource_id: $ => choice("-r", "--resource"),
         resource: $ =>
             seq(
-                $.resource_id,
+                alias($.flag_resource, $.flag),
                 field(
                     "resource",
                     seq(
@@ -137,21 +137,17 @@ export default grammar({
                 ),
             ),
 
-        ////////////////////
-        remap_id: $ => "--remap",
         remap: $ =>
             seq(
-                $.remap_id,
+                alias($.flag_remap, $.flag),
                 field("package", $.text),
                 ":",
                 field("target", $.text),
             ),
 
-        ////////////////////
-        server_listen_id: $ => "--server-listen",
         server_listen: $ =>
             seq(
-                $.server_listen_id,
+                alias($.flag_server_listen, $.flag),
                 optional(
                     choice(
                         "stdio",
@@ -165,11 +161,9 @@ export default grammar({
                 ),
             ),
 
-        ///////////////////////////
-        server_connect_id: $ => "--server-connect",
         server_connect: $ =>
             seq(
-                $.server_connect_id,
+                alias($.flag_server_connect, $.flag),
                 optional(
                     choice(
                         field("port", $.number),
@@ -182,11 +176,9 @@ export default grammar({
                 ),
             ),
 
-        ///////////////////////////
-        connect_id: $ => "--connect",
         connect: $ =>
             seq(
-                $.connect_id,
+                alias($.flag_connect, $.flag),
                 optional(
                     choice(
                         field("port", $.number),
@@ -199,7 +191,11 @@ export default grammar({
                 ),
             ),
 
-        macro: $ => seq("--macro", $.haxe_expression),
+        macro: $ =>
+            seq(
+                alias($.flag_macro, $.flag),
+                field("expression", $.haxe_expression),
+            ),
 
         //////////////////////////
         comment: $ => seq("#", /.+/),
@@ -212,15 +208,74 @@ export default grammar({
 
         switch: _ =>
             choice(
-                choice("--verbose", "-v"),
-                "-debug",
-                "--prompt",
-                "--no-traces",
+                choice("--debug", "-debug"),
                 "--display",
-                "--times",
+                "--flash-strict",
+                "--haxelib-global",
+                choice("--help", "-h"),
+                "--help-defines",
+                "--help-metas",
+                "--help-user-defines",
+                "--help-user-metas",
                 "--no-inline",
                 "--no-opt",
-                "--flash-strict",
+                "--no-traces",
+                "--prompt",
+                "--times",
+                choice("--verbose", "-v"),
+            ),
+
+        flag_c_arg: _ => "--c-arg",
+        flag_class_path: _ => choice("--class-path", "-cp", "-p"),
+        flag_connect: _ => "--connect",
+        flag_cwd: _ => choice("--cwd", "-C"),
+        flag_dce: _ => "--dce",
+        flag_define: _ => choice("-D", "--define"),
+        flag_java_lib_extern: _ => "--java-lib-extern",
+        flag_java_lib: _ => "--java-lib",
+        flag_json: _ => "--json",
+        flag_library: _ => choice("-L", "--library", "-lib"),
+        flag_macro: _ => "--macro",
+        flag_main: _ => choice("--main", "-m"),
+        flag_net_lib: _ => "--net-lib",
+        flag_net_std: _ => "--net-std",
+        flag_remap: _ => "--remap",
+        flag_resource: _ => choice("-r", "--resource"),
+        flag_server_connect: _ => "--server-connect",
+        flag_server_listen: _ => "--server-listen",
+        flag_swf_header: _ => "--swf-header",
+        flag_swf_lib_extern: _ => "--swf-lib-extern",
+        flag_swf_lib: _ => "--swf-lib",
+        flag_swf_version: _ => "--swf-version",
+        flag_warning: _ => "-w",
+        flag_xml: _ => "--xml",
+
+        flag: $ =>
+            choice(
+                $.flag_c_arg,
+                $.flag_class_path,
+                $.flag_connect,
+                $.flag_cwd,
+                $.flag_dce,
+                $.flag_define,
+                $.flag_java_lib_extern,
+                $.flag_java_lib,
+                $.flag_json,
+                $.flag_library,
+                $.flag_macro,
+                $.flag_main,
+                $.flag_net_lib,
+                $.flag_net_std,
+                $.flag_remap,
+                $.flag_resource,
+                $.flag_server_connect,
+                $.flag_server_listen,
+                $.flag_swf_header,
+                $.flag_swf_lib_extern,
+                $.flag_swf_lib,
+                $.flag_swf_version,
+                $.flag_warning,
+                $.flag_xml,
             ),
 
         ////////////////////
