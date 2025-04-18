@@ -5,12 +5,12 @@ export default grammar({
     name: "hxml",
 
     rules: {
-        hxml: ($) => repeat($._line),
-        next: ($) => "--next",
-        each: ($) => "--each",
+        hxml: $ => repeat($._line),
+        next: $ => "--next",
+        each: $ => "--each",
 
         /////////////////////
-        _line: ($) =>
+        _line: $ =>
             choice(
                 $.class_path,
                 $.dce,
@@ -26,6 +26,7 @@ export default grammar({
                 $.connect,
                 $.comment,
                 $.macro,
+                $.switch,
 
                 $.next,
                 $.each,
@@ -34,64 +35,79 @@ export default grammar({
                 prec.right(11, $.one_param),
             ),
 
-        hxml_file: ($) => field("hxml_file", /.*\.hxml/),
+        hxml_file: $ => field("hxml_file", /.*\.hxml/),
 
         /////////////////////
-        class_path_id: ($) => choice("--class-path", "-cp", "-p"),
-        class_path: ($) =>
-            seq($.class_path_id, $._ws, field("class_path", $.text)),
-
-        ////////////////////
-        output_id: ($) =>
-            choice(
-                "--js",
-                "--swf",
-                "--neko",
-                "--php",
-                "--cpp",
-                "--cs",
-                "--java",
-                "--jvm",
-                "--python",
-                "--lua",
-                "--hl",
-                "--cppia",
-                "-x",
-            ),
-        output_id_no_value: ($) => choice("--no-output", "--interp"),
-        output_id_run: ($) => "--run",
-        output: ($) =>
-            choice(
-                seq($.output_id, field("target", $.text)),
-                $.output_id_no_value,
-                seq($.output_id_run, field("main", $.text), repeat($.text)),
-            ),
-
-        /////////////////////
-        dce_id: ($) => "--dce",
-        dce: ($) => seq($.dce_id, field("dce", choice("std", "full", "no"))),
-
-        ////////////////////
-        main_id: ($) => choice("--main", "-m"),
-        main: ($) => seq($.main_id, field("main", $.text)),
-
-        ////////////////////
-        library_id: ($) => choice("-L", "--library"),
-        library: ($) =>
+        class_path: $ =>
             seq(
-                $.library_id,
-                field(
-                    "library",
+                choice("--class-path", "-cp", "-p"),
+                $._ws,
+                field("path", $.text),
+            ),
+
+        ////////////////////
+        output: $ =>
+            choice(
+                seq(
+                    choice(
+                        "--js",
+                        "--swf",
+                        "--neko",
+                        "--jvm",
+                        "--python",
+                        "--lua",
+                        "--hl",
+                        "--cppia",
+                        "-x",
+                    ),
+                    field("file", $.text),
+                ),
+                seq(
+                    choice("--php", "--cpp", "--cs", "--java"),
+                    field("directory", $.text),
+                ),
+                seq(choice("--custom-target", "-custom"), $.text),
+                choice("--no-output", "--interp"),
+                seq("--run", field("main", $.text), repeat($.text)),
+            ),
+
+        /////////////////////
+        dce_id: $ => "--dce",
+        dce: $ => seq($.dce_id, field("dce", choice("std", "full", "no"))),
+
+        ////////////////////
+        main_id: $ => choice("--main", "-m"),
+        main: $ => seq($.main_id, field("main", $.text)),
+
+        ////////////////////
+        library: $ =>
+            seq(
+                choice("--library", "-lib", "-L"),
+                field("name", $.identifier),
+                optional(
                     seq(
-                        field("name", $.text),
-                        optional(seq(":", field("version", $.value))),
+                        token.immediate(":"),
+                        choice(
+                            $._library_git_version,
+                            $._library_haxelib_version,
+                        ),
                     ),
                 ),
             ),
 
+        _library_haxelib_version: $ => field("version", $.version),
+
+        _library_git_version: $ =>
+            prec.left(
+                seq(
+                    field("url", $.url),
+                    optional(seq("#", field("ref", $.text))),
+                ),
+            ),
+
         ////////////////////
-        define_id: ($) => choice("-D", "--define"),
-        define: ($) =>
+        define_id: $ => choice("-D", "--define"),
+        define: $ =>
             seq(
                 $.define_id,
                 field(
@@ -104,8 +120,8 @@ export default grammar({
             ),
 
         ////////////////////
-        resource_id: ($) => choice("-r", "--resource"),
-        resource: ($) =>
+        resource_id: $ => choice("-r", "--resource"),
+        resource: $ =>
             seq(
                 $.resource_id,
                 field(
@@ -118,8 +134,8 @@ export default grammar({
             ),
 
         ////////////////////
-        remap_id: ($) => "--remap",
-        remap: ($) =>
+        remap_id: $ => "--remap",
+        remap: $ =>
             seq(
                 $.remap_id,
                 field("package", $.text),
@@ -128,8 +144,8 @@ export default grammar({
             ),
 
         ////////////////////
-        server_listen_id: ($) => "--server-listen",
-        server_listen: ($) =>
+        server_listen_id: $ => "--server-listen",
+        server_listen: $ =>
             seq(
                 $.server_listen_id,
                 optional(
@@ -146,8 +162,8 @@ export default grammar({
             ),
 
         ///////////////////////////
-        server_connect_id: ($) => "--server-connect",
-        server_connect: ($) =>
+        server_connect_id: $ => "--server-connect",
+        server_connect: $ =>
             seq(
                 $.server_connect_id,
                 optional(
@@ -163,8 +179,8 @@ export default grammar({
             ),
 
         ///////////////////////////
-        connect_id: ($) => "--connect",
-        connect: ($) =>
+        connect_id: $ => "--connect",
+        connect: $ =>
             seq(
                 $.connect_id,
                 optional(
@@ -179,23 +195,40 @@ export default grammar({
                 ),
             ),
 
-        argument_macro: ($) => "--macro",
-        macro: ($) => seq($.argument_macro, $.haxe_expression),
+        macro: $ => seq("--macro", $.haxe_expression),
 
         //////////////////////////
-        comment: ($) => seq("#", /.+/),
+        comment: $ => seq("#", /.+/),
 
         ////////////////////
         // generic ones
-        no_param: ($) => choice(/--[a-z]*/, /-[A-Za-z]*/),
-        one_param: ($) =>
+        no_param: $ => choice(/--[a-z]*/, /-[A-Za-z]*/),
+        one_param: $ =>
             seq(field("option", $.no_param), field("value", $.text)),
 
+        switch: _ =>
+            choice(
+                choice("--verbose", "-v"),
+                "-debug",
+                "--prompt",
+                "--no-traces",
+                "--display",
+                "--times",
+                "--no-inline",
+                "--no-opt",
+                "--flash-strict",
+            ),
+
         ////////////////////
-        text: ($) => /[\\.A-Za-z\/_-]+/,
-        value: ($) => /[\\.A-Za-z0-9\/_-]+/,
-        haxe_expression: ($) => /[\\.A-Za-z0-9_-]+\(.*\)/,
-        number: ($) => /[0-9]+/,
-        _ws: ($) => repeat1(" "),
+
+        identifier: $ => /[a-zA-Z_]+[a-zA-Z0-9]*/,
+        url: _ => /[^\#]+/,
+        version: _ => /[0-9]+\.[0-9]+\.[0-9]+/,
+
+        text: $ => /[\\.A-Za-z\/_-]+/,
+        value: $ => /[\\.A-Za-z0-9\/_-]+/,
+        haxe_expression: $ => /[\\.A-Za-z0-9_-]+\(.*\)/,
+        number: $ => /[0-9]+/,
+        _ws: $ => repeat1(" "),
     },
 });

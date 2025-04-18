@@ -3,7 +3,7 @@
     "type": "class_path",
     "named": true,
     "fields": {
-      "class_path": {
+      "path": {
         "multiple": false,
         "required": true,
         "types": [
@@ -13,22 +13,7 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "class_path_id",
-          "named": true
-        }
-      ]
     }
-  },
-  {
-    "type": "class_path_id",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "comment",
@@ -236,6 +221,10 @@
         {
           "type": "server_listen",
           "named": true
+        },
+        {
+          "type": "switch",
+          "named": true
         }
       ]
     }
@@ -249,22 +238,32 @@
     "type": "library",
     "named": true,
     "fields": {
-      "library": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": ":",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "ref": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
             "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "url": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "url",
             "named": true
           }
         ]
@@ -274,40 +273,21 @@
         "required": false,
         "types": [
           {
-            "type": "value",
+            "type": "version",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "library_id",
-          "named": true
-        }
-      ]
     }
-  },
-  {
-    "type": "library_id",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "macro",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "argument_macro",
-          "named": true
-        },
         {
           "type": "haxe_expression",
           "named": true
@@ -381,7 +361,7 @@
     "type": "output",
     "named": true,
     "fields": {
-      "main": {
+      "directory": {
         "multiple": false,
         "required": false,
         "types": [
@@ -391,7 +371,17 @@
           }
         ]
       },
-      "target": {
+      "file": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "main": {
         "multiple": false,
         "required": false,
         "types": [
@@ -404,36 +394,14 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "output_id",
-          "named": true
-        },
-        {
-          "type": "output_id_no_value",
-          "named": true
-        },
-        {
-          "type": "output_id_run",
-          "named": true
-        },
         {
           "type": "text",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "output_id",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "output_id_no_value",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "remap",
@@ -595,6 +563,11 @@
     }
   },
   {
+    "type": "switch",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": " ",
     "named": false
   },
@@ -619,7 +592,19 @@
     "named": false
   },
   {
+    "type": "--custom-target",
+    "named": false
+  },
+  {
     "type": "--define",
+    "named": false
+  },
+  {
+    "type": "--display",
+    "named": false
+  },
+  {
+    "type": "--flash-strict",
     "named": false
   },
   {
@@ -651,6 +636,10 @@
     "named": false
   },
   {
+    "type": "--macro",
+    "named": false
+  },
+  {
     "type": "--main",
     "named": false
   },
@@ -659,11 +648,27 @@
     "named": false
   },
   {
+    "type": "--no-inline",
+    "named": false
+  },
+  {
+    "type": "--no-opt",
+    "named": false
+  },
+  {
     "type": "--no-output",
     "named": false
   },
   {
+    "type": "--no-traces",
+    "named": false
+  },
+  {
     "type": "--php",
+    "named": false
+  },
+  {
+    "type": "--prompt",
     "named": false
   },
   {
@@ -675,7 +680,19 @@
     "named": false
   },
   {
+    "type": "--run",
+    "named": false
+  },
+  {
     "type": "--swf",
+    "named": false
+  },
+  {
+    "type": "--times",
+    "named": false
+  },
+  {
+    "type": "--verbose",
     "named": false
   },
   {
@@ -691,6 +708,18 @@
     "named": false
   },
   {
+    "type": "-custom",
+    "named": false
+  },
+  {
+    "type": "-debug",
+    "named": false
+  },
+  {
+    "type": "-lib",
+    "named": false
+  },
+  {
     "type": "-m",
     "named": false
   },
@@ -700,6 +729,10 @@
   },
   {
     "type": "-r",
+    "named": false
+  },
+  {
+    "type": "-v",
     "named": false
   },
   {
@@ -717,10 +750,6 @@
   {
     "type": "@",
     "named": false
-  },
-  {
-    "type": "argument_macro",
-    "named": true
   },
   {
     "type": "connect_id",
@@ -743,6 +772,10 @@
     "named": true
   },
   {
+    "type": "identifier",
+    "named": true
+  },
+  {
     "type": "next",
     "named": true
   },
@@ -752,10 +785,6 @@
   },
   {
     "type": "number",
-    "named": true
-  },
-  {
-    "type": "output_id_run",
     "named": true
   },
   {
@@ -783,7 +812,15 @@
     "named": true
   },
   {
+    "type": "url",
+    "named": true
+  },
+  {
     "type": "value",
+    "named": true
+  },
+  {
+    "type": "version",
     "named": true
   }
 ]

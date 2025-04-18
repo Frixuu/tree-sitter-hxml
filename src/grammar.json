@@ -78,6 +78,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "switch"
+        },
+        {
+          "type": "SYMBOL",
           "name": "next"
         },
         {
@@ -110,29 +114,25 @@
         "value": ".*\\.hxml"
       }
     },
-    "class_path_id": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "--class-path"
-        },
-        {
-          "type": "STRING",
-          "value": "-cp"
-        },
-        {
-          "type": "STRING",
-          "value": "-p"
-        }
-      ]
-    },
     "class_path": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "class_path_id"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--class-path"
+            },
+            {
+              "type": "STRING",
+              "value": "-cp"
+            },
+            {
+              "type": "STRING",
+              "value": "-p"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -140,87 +140,13 @@
         },
         {
           "type": "FIELD",
-          "name": "class_path",
+          "name": "path",
           "content": {
             "type": "SYMBOL",
             "name": "text"
           }
         }
       ]
-    },
-    "output_id": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "--js"
-        },
-        {
-          "type": "STRING",
-          "value": "--swf"
-        },
-        {
-          "type": "STRING",
-          "value": "--neko"
-        },
-        {
-          "type": "STRING",
-          "value": "--php"
-        },
-        {
-          "type": "STRING",
-          "value": "--cpp"
-        },
-        {
-          "type": "STRING",
-          "value": "--cs"
-        },
-        {
-          "type": "STRING",
-          "value": "--java"
-        },
-        {
-          "type": "STRING",
-          "value": "--jvm"
-        },
-        {
-          "type": "STRING",
-          "value": "--python"
-        },
-        {
-          "type": "STRING",
-          "value": "--lua"
-        },
-        {
-          "type": "STRING",
-          "value": "--hl"
-        },
-        {
-          "type": "STRING",
-          "value": "--cppia"
-        },
-        {
-          "type": "STRING",
-          "value": "-x"
-        }
-      ]
-    },
-    "output_id_no_value": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "--no-output"
-        },
-        {
-          "type": "STRING",
-          "value": "--interp"
-        }
-      ]
-    },
-    "output_id_run": {
-      "type": "STRING",
-      "value": "--run"
     },
     "output": {
       "type": "CHOICE",
@@ -229,12 +155,49 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "output_id"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "--js"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--swf"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--neko"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--jvm"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--python"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--lua"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--hl"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--cppia"
+                },
+                {
+                  "type": "STRING",
+                  "value": "-x"
+                }
+              ]
             },
             {
               "type": "FIELD",
-              "name": "target",
+              "name": "file",
               "content": {
                 "type": "SYMBOL",
                 "name": "text"
@@ -243,15 +206,80 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "output_id_no_value"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "--php"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--cpp"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--cs"
+                },
+                {
+                  "type": "STRING",
+                  "value": "--java"
+                }
+              ]
+            },
+            {
+              "type": "FIELD",
+              "name": "directory",
+              "content": {
+                "type": "SYMBOL",
+                "name": "text"
+              }
+            }
+          ]
         },
         {
           "type": "SEQ",
           "members": [
             {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "--custom-target"
+                },
+                {
+                  "type": "STRING",
+                  "value": "-custom"
+                }
+              ]
+            },
+            {
               "type": "SYMBOL",
-              "name": "output_id_run"
+              "name": "text"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--no-output"
+            },
+            {
+              "type": "STRING",
+              "value": "--interp"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--run"
             },
             {
               "type": "FIELD",
@@ -336,69 +364,118 @@
         }
       ]
     },
-    "library_id": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "-L"
-        },
-        {
-          "type": "STRING",
-          "value": "--library"
-        }
-      ]
-    },
     "library": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "library_id"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--library"
+            },
+            {
+              "type": "STRING",
+              "value": "-lib"
+            },
+            {
+              "type": "STRING",
+              "value": "-L"
+            }
+          ]
         },
         {
           "type": "FIELD",
-          "name": "library",
+          "name": "name",
           "content": {
-            "type": "SEQ",
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_library_git_version"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_library_haxelib_version"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_library_haxelib_version": {
+      "type": "FIELD",
+      "name": "version",
+      "content": {
+        "type": "SYMBOL",
+        "name": "version"
+      }
+    },
+    "_library_git_version": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "url",
+            "content": {
+              "type": "SYMBOL",
+              "name": "url"
+            }
+          },
+          {
+            "type": "CHOICE",
             "members": [
               {
-                "type": "FIELD",
-                "name": "name",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "text"
-                }
-              },
-              {
-                "type": "CHOICE",
+                "type": "SEQ",
                 "members": [
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ":"
-                      },
-                      {
-                        "type": "FIELD",
-                        "name": "version",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "value"
-                        }
-                      }
-                    ]
+                    "type": "STRING",
+                    "value": "#"
                   },
                   {
-                    "type": "BLANK"
+                    "type": "FIELD",
+                    "name": "ref",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "text"
+                    }
                   }
                 ]
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }
-        }
-      ]
+        ]
+      }
     },
     "define_id": {
       "type": "CHOICE",
@@ -742,16 +819,12 @@
         }
       ]
     },
-    "argument_macro": {
-      "type": "STRING",
-      "value": "--macro"
-    },
     "macro": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "argument_macro"
+          "type": "STRING",
+          "value": "--macro"
         },
         {
           "type": "SYMBOL",
@@ -805,6 +878,68 @@
           }
         }
       ]
+    },
+    "switch": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--verbose"
+            },
+            {
+              "type": "STRING",
+              "value": "-v"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "-debug"
+        },
+        {
+          "type": "STRING",
+          "value": "--prompt"
+        },
+        {
+          "type": "STRING",
+          "value": "--no-traces"
+        },
+        {
+          "type": "STRING",
+          "value": "--display"
+        },
+        {
+          "type": "STRING",
+          "value": "--times"
+        },
+        {
+          "type": "STRING",
+          "value": "--no-inline"
+        },
+        {
+          "type": "STRING",
+          "value": "--no-opt"
+        },
+        {
+          "type": "STRING",
+          "value": "--flash-strict"
+        }
+      ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]+[a-zA-Z0-9]*"
+    },
+    "url": {
+      "type": "PATTERN",
+      "value": "[^\\#]+"
+    },
+    "version": {
+      "type": "PATTERN",
+      "value": "[0-9]+\\.[0-9]+\\.[0-9]+"
     },
     "text": {
       "type": "PATTERN",

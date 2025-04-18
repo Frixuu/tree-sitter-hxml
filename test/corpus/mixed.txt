@@ -1,0 +1,30 @@
+==========
+Mixed LSP config #1
+==========
+
+--class-path src
+--class-path samples/hello_world/src
+
+--cpp out
+--no-output
+
+--library instrument
+--library utest:1.13.2
+--library foo:git:https://github.com/User/foo
+--library bar:git:https://github.com/User/bar#tag
+
+--macro nullSafety("sys", StrictThreaded)
+
+---
+
+(hxml
+    (class_path path: (text))
+    (class_path path: (text))
+    (output directory: (text))
+    (output)
+    (library name: (identifier))
+    (library name: (identifier) version: (version))
+    (library name: (identifier) url: (url))
+    (library name: (identifier) url: (url) ref: (text))
+    (macro (haxe_expression))
+)
