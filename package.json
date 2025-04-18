@@ -2,18 +2,16 @@
   "name": "tree-sitter-hxml",
   "version": "1.0.0",
   "description": "",
-  "main": "bindings/node",
   "scripts": {
-    "setup": "node-gyp configure",
-    "build": "tree-sitter generate && node-gyp build",
+    "build": "tree-sitter generate",
     "test": "tree-sitter test"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
-    "tree-sitter-cli": "^0.25.3",
-    "node-gyp": "^11.2.0"
+    "node-gyp": "^11.2.0",
+    "prettier": "^3.5.3",
+    "tree-sitter-cli": "^0.25.3"
   },
   "tree-sitter": [
     {
