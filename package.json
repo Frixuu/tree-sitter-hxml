@@ -4,25 +4,26 @@
   "description": "",
   "main": "bindings/node",
   "scripts": {
-		"setup": "node-gyp configure",
+    "setup": "node-gyp configure",
     "build": "tree-sitter generate && node-gyp build",
-		"test":  "tree-sitter test"
+    "test": "tree-sitter test"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.8",
-    "node-gyp": "^9.4.0"
+    "tree-sitter-cli": "^0.25.3",
+    "node-gyp": "^11.2.0"
   },
-	"tree-sitter": [{
-		"file-types": [
-			"hxml"
-		],
-		"highlights": [
-			"queries/highlights.scm"
-		],
-		"scope": "source.hxml"
-	}]
+  "tree-sitter": [
+    {
+      "file-types": [
+        "hxml"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "scope": "source.hxml"
+    }
+  ]
 }

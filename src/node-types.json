@@ -1,0 +1,758 @@
+[
+  {
+    "type": "class_path",
+    "named": true,
+    "fields": {
+      "class_path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_path_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_path_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "connect",
+    "named": true,
+    "fields": {
+      "host": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "port": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "connect_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dce",
+    "named": true,
+    "fields": {
+      "dce": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "full",
+            "named": false
+          },
+          {
+            "type": "no",
+            "named": false
+          },
+          {
+            "type": "std",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dce_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "define",
+    "named": true,
+    "fields": {
+      "define": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      },
+      "var": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "define_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "define_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hxml_content",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "class_path",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "connect",
+          "named": true
+        },
+        {
+          "type": "dce",
+          "named": true
+        },
+        {
+          "type": "define",
+          "named": true
+        },
+        {
+          "type": "each",
+          "named": true
+        },
+        {
+          "type": "hxml_file",
+          "named": true
+        },
+        {
+          "type": "library",
+          "named": true
+        },
+        {
+          "type": "main",
+          "named": true
+        },
+        {
+          "type": "next",
+          "named": true
+        },
+        {
+          "type": "no_param",
+          "named": true
+        },
+        {
+          "type": "one_param",
+          "named": true
+        },
+        {
+          "type": "output",
+          "named": true
+        },
+        {
+          "type": "remap",
+          "named": true
+        },
+        {
+          "type": "resource",
+          "named": true
+        },
+        {
+          "type": "server_connect",
+          "named": true
+        },
+        {
+          "type": "server_listen",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hxml_file",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "library",
+    "named": true,
+    "fields": {
+      "library": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "version": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "library_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "library_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "main",
+    "named": true,
+    "fields": {
+      "main": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "main_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "main_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "no_param",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "one_param",
+    "named": true,
+    "fields": {
+      "option": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "no_param",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "output",
+    "named": true,
+    "fields": {
+      "main": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "output_id",
+          "named": true
+        },
+        {
+          "type": "output_id_no_value",
+          "named": true
+        },
+        {
+          "type": "output_id_run",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "output_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "output_id_no_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "remap",
+    "named": true,
+    "fields": {
+      "package": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "remap_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "resource",
+    "named": true,
+    "fields": {
+      "file": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "resource": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "resource_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "resource_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "server_connect",
+    "named": true,
+    "fields": {
+      "host": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "port": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "server_connect_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "server_listen",
+    "named": true,
+    "fields": {
+      "host": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "port": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "server_listen_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "--class-path",
+    "named": false
+  },
+  {
+    "type": "--cpp",
+    "named": false
+  },
+  {
+    "type": "--cppia",
+    "named": false
+  },
+  {
+    "type": "--cs",
+    "named": false
+  },
+  {
+    "type": "--define",
+    "named": false
+  },
+  {
+    "type": "--hl",
+    "named": false
+  },
+  {
+    "type": "--interp",
+    "named": false
+  },
+  {
+    "type": "--java",
+    "named": false
+  },
+  {
+    "type": "--js",
+    "named": false
+  },
+  {
+    "type": "--jvm",
+    "named": false
+  },
+  {
+    "type": "--library",
+    "named": false
+  },
+  {
+    "type": "--lua",
+    "named": false
+  },
+  {
+    "type": "--main",
+    "named": false
+  },
+  {
+    "type": "--neko",
+    "named": false
+  },
+  {
+    "type": "--no-output",
+    "named": false
+  },
+  {
+    "type": "--php",
+    "named": false
+  },
+  {
+    "type": "--python",
+    "named": false
+  },
+  {
+    "type": "--resource",
+    "named": false
+  },
+  {
+    "type": "--swf",
+    "named": false
+  },
+  {
+    "type": "-D",
+    "named": false
+  },
+  {
+    "type": "-L",
+    "named": false
+  },
+  {
+    "type": "-cp",
+    "named": false
+  },
+  {
+    "type": "-m",
+    "named": false
+  },
+  {
+    "type": "-p",
+    "named": false
+  },
+  {
+    "type": "-r",
+    "named": false
+  },
+  {
+    "type": "-x",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "connect_id",
+    "named": true
+  },
+  {
+    "type": "dce_id",
+    "named": true
+  },
+  {
+    "type": "each",
+    "named": true
+  },
+  {
+    "type": "full",
+    "named": false
+  },
+  {
+    "type": "next",
+    "named": true
+  },
+  {
+    "type": "no",
+    "named": false
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "output_id_run",
+    "named": true
+  },
+  {
+    "type": "remap_id",
+    "named": true
+  },
+  {
+    "type": "server_connect_id",
+    "named": true
+  },
+  {
+    "type": "server_listen_id",
+    "named": true
+  },
+  {
+    "type": "std",
+    "named": false
+  },
+  {
+    "type": "stdio",
+    "named": false
+  },
+  {
+    "type": "text",
+    "named": true
+  },
+  {
+    "type": "value",
+    "named": true
+  }
+]
