@@ -2,7 +2,7 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "hxml",
   "rules": {
-    "hxml_content": {
+    "hxml": {
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
@@ -71,6 +71,10 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro"
         },
         {
           "type": "SYMBOL",
@@ -738,6 +742,23 @@
         }
       ]
     },
+    "argument_macro": {
+      "type": "STRING",
+      "value": "--macro"
+    },
+    "macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "argument_macro"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "haxe_expression"
+        }
+      ]
+    },
     "comment": {
       "type": "SEQ",
       "members": [
@@ -792,6 +813,10 @@
     "value": {
       "type": "PATTERN",
       "value": "[\\\\.A-Za-z0-9\\/_-]+"
+    },
+    "haxe_expression": {
+      "type": "PATTERN",
+      "value": "[\\\\.A-Za-z0-9_-]+\\(.*\\)"
     },
     "number": {
       "type": "PATTERN",

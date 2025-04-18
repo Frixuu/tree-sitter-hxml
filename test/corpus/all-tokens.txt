@@ -35,10 +35,10 @@ Class Path
 
 ---
 
-(hxml_content
-	(class_path (text))
-	(class_path (text))
-	(class_path (text)))
+(hxml
+    (class_path (text))
+    (class_path (text))
+    (class_path (text)))
 
 ======
 Connect
@@ -49,9 +49,9 @@ Connect
 
 ---
 
-(hxml_content
-	(connect (number))
-	(connect (text) (number)))
+(hxml
+    (connect (number))
+    (connect (text) (number)))
 
 ======
 Define
@@ -64,11 +64,11 @@ Define
 
 ---
 
-(hxml_content
-	(define (text))
-	(define (text) (value))
-	(define (text))
-	(define (text) (value)))
+(hxml
+    (define (text))
+    (define (text) (value))
+    (define (text))
+    (define (text) (value)))
 
 =======
 Library
@@ -81,11 +81,11 @@ Library
 
 ---
 
-(hxml_content
-	(library (text))
-	(library (text) (value))
-	(library (text))
-	(library (text) (value)))
+(hxml
+    (library (text))
+    (library (text) (value))
+    (library (text))
+    (library (text) (value)))
 
 =====
 Main
@@ -96,9 +96,22 @@ Main
 
 ---
 
-(hxml_content
-	(main (text))
-	(main (text)))
+(hxml
+    (main (text))
+    (main (text)))
+
+=====
+Macros
+=====
+
+--macro nullSafety("sys", StrictThreaded)
+
+---
+
+(hxml
+    (macro
+        (argument_macro)
+        (haxe_expression)))
 
 ======
 Output
@@ -123,23 +136,23 @@ Output
 
 ---
 
-(hxml_content
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output (text))
-	(output)
-	(output (text))
-	(output (text) (text))
-	(output (text) (text) (text) (text)))
+(hxml
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output (text))
+    (output)
+    (output (text))
+    (output (text) (text))
+    (output (text) (text) (text) (text)))
 
 ======
 Resource
@@ -152,11 +165,11 @@ Resource
 
 ---
 
-(hxml_content
-	(resource (text))
-	(resource (text) (text))
-	(resource (text))
-	(resource (text) (text)))
+(hxml
+    (resource (text))
+    (resource (text) (text))
+    (resource (text))
+    (resource (text) (text)))
 
 =====
 Server Connect
@@ -168,10 +181,10 @@ Server Connect
 
 ---
 
-(hxml_content
-	(server_connect)
-	(server_connect (number))
-	(server_connect (text) (number)))
+(hxml
+    (server_connect)
+    (server_connect (number))
+    (server_connect (text) (number)))
 
 =====
 Server Listen
@@ -184,8 +197,8 @@ Server Listen
 
 ---
 
-(hxml_content
-	(server_listen)
-	(server_listen (number))
-	(server_listen (text) (number))
-	(server_listen))
+(hxml
+    (server_listen)
+    (server_listen (number))
+    (server_listen (text) (number))
+    (server_listen))

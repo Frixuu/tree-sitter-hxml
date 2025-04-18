@@ -157,7 +157,7 @@
     "fields": {}
   },
   {
-    "type": "hxml_content",
+    "type": "hxml",
     "named": true,
     "root": true,
     "fields": {},
@@ -195,6 +195,10 @@
         },
         {
           "type": "library",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -291,6 +295,25 @@
     "type": "library_id",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_macro",
+          "named": true
+        },
+        {
+          "type": "haxe_expression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "main",
@@ -696,6 +719,10 @@
     "named": false
   },
   {
+    "type": "argument_macro",
+    "named": true
+  },
+  {
     "type": "connect_id",
     "named": true
   },
@@ -710,6 +737,10 @@
   {
     "type": "full",
     "named": false
+  },
+  {
+    "type": "haxe_expression",
+    "named": true
   },
   {
     "type": "next",
