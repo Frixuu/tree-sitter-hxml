@@ -19,6 +19,8 @@ export default grammar({
                 $.cmd,
                 $.cwd,
                 $.hxml_file,
+                $.types_desc,
+                $.c_arg,
                 $.library,
                 $.define,
                 $.resource,
@@ -100,6 +102,14 @@ export default grammar({
 
         cmd: $ => seq(alias($.flag_cmd, $.flag), field("command", $.text)),
         cwd: $ => seq(alias($.flag_cwd, $.flag), field("path", $.text)),
+
+        types_desc: $ =>
+            seq(
+                alias(choice($.flag_xml, $.flag_json), $.flag),
+                field("path", $.text),
+            ),
+
+        c_arg: $ => seq(alias($.flag_c_arg, $.flag), field("arg", $.text)),
 
         dce: $ =>
             seq(

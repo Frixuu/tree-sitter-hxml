@@ -25,6 +25,19 @@ _untested
 --net-std file
 --c-arg arg
 
+===
+C arg
+===
+
+--c-arg arg
+
+---
+
+(hxml
+    (c_arg (flag) (text))
+)
+
+
 =====
 Cmd
 =====
@@ -240,3 +253,28 @@ Server Listen
     (server_listen (flag) (text) (number))
     (server_listen (flag))
 )
+
+===
+XML
+===
+
+--xml file.xml
+
+---
+
+(hxml
+    (types_desc (flag) (text))
+)
+
+===
+JSON
+===
+
+--json file.json
+
+---
+
+(hxml
+    (types_desc (flag) (text))
+)
+

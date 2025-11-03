@@ -1,5 +1,31 @@
 [
   {
+    "type": "c_arg",
+    "named": true,
+    "fields": {
+      "arg": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "class_path",
     "named": true,
     "fields": {
@@ -218,6 +244,10 @@
       "required": false,
       "types": [
         {
+          "type": "c_arg",
+          "named": true
+        },
+        {
           "type": "class_path",
           "named": true
         },
@@ -299,6 +329,10 @@
         },
         {
           "type": "switch",
+          "named": true
+        },
+        {
+          "type": "types_desc",
           "named": true
         }
       ]
@@ -658,6 +692,32 @@
     "fields": {}
   },
   {
+    "type": "types_desc",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "value",
     "named": true,
     "fields": {}
@@ -775,6 +835,10 @@
     "named": false
   },
   {
+    "type": "--xml",
+    "named": false
+  },
+  {
     "type": "-C",
     "named": false
   },
@@ -848,6 +912,10 @@
   },
   {
     "type": "-version",
+    "named": false
+  },
+  {
+    "type": "-xml",
     "named": false
   },
   {
