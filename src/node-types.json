@@ -26,6 +26,32 @@
     }
   },
   {
+    "type": "cmd",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -167,6 +193,10 @@
       "types": [
         {
           "type": "class_path",
+          "named": true
+        },
+        {
+          "type": "cmd",
           "named": true
         },
         {
@@ -615,6 +645,10 @@
     "named": false
   },
   {
+    "type": "--cmd",
+    "named": false
+  },
+  {
     "type": "--dce",
     "named": false
   },
@@ -712,6 +746,10 @@
   },
   {
     "type": "-L",
+    "named": false
+  },
+  {
+    "type": "-cmd",
     "named": false
   },
   {

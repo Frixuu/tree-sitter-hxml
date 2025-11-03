@@ -16,6 +16,7 @@ export default grammar({
                 $.dce,
                 $.main,
                 $.output,
+                $.cmd,
                 $.hxml_file,
                 $.library,
                 $.define,
@@ -95,6 +96,8 @@ export default grammar({
                     repeat($.text),
                 ),
             ),
+
+        cmd: $ => seq(alias($.flag_cmd, $.flag), field("command", $.text)),
 
         dce: $ =>
             seq(

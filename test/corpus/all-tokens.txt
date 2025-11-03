@@ -26,6 +26,18 @@ _untested
 --c-arg arg
 
 =====
+Cmd
+=====
+
+--cmd out/TestMain
+
+---
+
+(hxml
+    (cmd (flag) (text))
+)
+
+=====
 Class Path
 =====
 

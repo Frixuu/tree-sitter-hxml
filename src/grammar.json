@@ -38,6 +38,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "cmd"
+        },
+        {
+          "type": "SYMBOL",
           "name": "hxml_file"
         },
         {
@@ -362,6 +366,28 @@
               }
             }
           ]
+        }
+      ]
+    },
+    "cmd": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "flag_cmd"
+          },
+          "named": true,
+          "value": "flag"
+        },
+        {
+          "type": "FIELD",
+          "name": "command",
+          "content": {
+            "type": "SYMBOL",
+            "name": "text"
+          }
         }
       ]
     },
