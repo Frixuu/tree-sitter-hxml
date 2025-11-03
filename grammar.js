@@ -118,12 +118,13 @@ export default grammar({
                             // Git
                             prec.left(
                                 seq(
-                                    token.immediate("git:"),
-                                    field("url", $.url),
+                                    token.immediate("git"),
+                                    token.immediate(":"),
+                                    field("url", $.git_url),
                                     optional(
                                         seq(
                                             token.immediate("#"),
-                                            field("ref", $.text),
+                                            field("ref", $.git_ref),
                                         ),
                                     ),
                                 ),
@@ -174,7 +175,7 @@ export default grammar({
                         field("port", $.number),
                         seq(
                             field("host", $.text),
-                            ":",
+                            token.immediate(":"),
                             field("port", $.number),
                         ),
                     ),
@@ -306,7 +307,8 @@ export default grammar({
         ////////////////////
 
         identifier: $ => /[a-zA-Z_]+[a-zA-Z0-9]*/,
-        url: _ => /[^(\#\s)]+/,
+        git_url: _ => /[^(\#\s)]+/,
+        git_ref: _ => /[\\.A-Za-z0-9\/_-]+/,
         version: _ => /[0-9]+\.[0-9]+\.[0-9]+/,
 
         text: $ => /[\\.A-Za-z\/_-]+/,

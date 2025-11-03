@@ -1,13 +1,11 @@
 [(flag) (switch) (next) (each)] @keyword
+"git" @keyword
 
 (comment) @comment
 
-[
- ":"
- "="
- "@"
-] @keyword.operator
+["="] @operator
+[":" "@"] @punctuation.delimiter
 
-[(text) (identifier) (url) (version)] @string
-(value) @number
-(number) @number
+[(text) (identifier) (git_url) (git_ref) (version)] @string
+(library "#" @punctuation.delimiter)
+[(number)] @number

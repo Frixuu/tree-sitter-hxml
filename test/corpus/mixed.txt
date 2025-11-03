@@ -24,8 +24,8 @@ Mixed LSP config #1
     (output (flag))
     (library (flag) name: (identifier))
     (library (flag) name: (identifier) version: (version))
-    (library (flag) name: (identifier) url: (url))
-    (library (flag) name: (identifier) url: (url) ref: (text))
+    (library (flag) name: (identifier) url: (git_url))
+    (library (flag) name: (identifier) url: (git_url) ref: (git_ref))
     (macro (flag) expression: (haxe_expression))
 )
 

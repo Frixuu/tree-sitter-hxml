@@ -476,7 +476,14 @@
                             "type": "IMMEDIATE_TOKEN",
                             "content": {
                               "type": "STRING",
-                              "value": "git:"
+                              "value": "git"
+                            }
+                          },
+                          {
+                            "type": "IMMEDIATE_TOKEN",
+                            "content": {
+                              "type": "STRING",
+                              "value": ":"
                             }
                           },
                           {
@@ -484,7 +491,7 @@
                             "name": "url",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "url"
+                              "name": "git_url"
                             }
                           },
                           {
@@ -505,7 +512,7 @@
                                     "name": "ref",
                                     "content": {
                                       "type": "SYMBOL",
-                                      "name": "text"
+                                      "name": "git_ref"
                                     }
                                   }
                                 ]
@@ -717,8 +724,11 @@
                       }
                     },
                     {
-                      "type": "STRING",
-                      "value": ":"
+                      "type": "IMMEDIATE_TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": ":"
+                      }
                     },
                     {
                       "type": "FIELD",
@@ -1427,9 +1437,13 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_]+[a-zA-Z0-9]*"
     },
-    "url": {
+    "git_url": {
       "type": "PATTERN",
       "value": "[^(\\#\\s)]+"
+    },
+    "git_ref": {
+      "type": "PATTERN",
+      "value": "[\\\\.A-Za-z0-9\\/_-]+"
     },
     "version": {
       "type": "PATTERN",

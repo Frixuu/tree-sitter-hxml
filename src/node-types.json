@@ -152,6 +152,11 @@
     "fields": {}
   },
   {
+    "type": "git_ref",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "hxml",
     "named": true,
     "root": true,
@@ -263,7 +268,7 @@
         "required": false,
         "types": [
           {
-            "type": "text",
+            "type": "git_ref",
             "named": true
           }
         ]
@@ -273,7 +278,7 @@
         "required": false,
         "types": [
           {
-            "type": "url",
+            "type": "git_url",
             "named": true
           }
         ]
@@ -593,6 +598,11 @@
     "fields": {}
   },
   {
+    "type": "value",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": " ",
     "named": false
   },
@@ -785,8 +795,12 @@
     "named": false
   },
   {
-    "type": "git:",
+    "type": "git",
     "named": false
+  },
+  {
+    "type": "git_url",
+    "named": true
   },
   {
     "type": "haxe_expression",
@@ -818,14 +832,6 @@
   },
   {
     "type": "text",
-    "named": true
-  },
-  {
-    "type": "url",
-    "named": true
-  },
-  {
-    "type": "value",
     "named": true
   },
   {
