@@ -42,6 +42,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "cwd"
+        },
+        {
+          "type": "SYMBOL",
           "name": "hxml_file"
         },
         {
@@ -384,6 +388,28 @@
         {
           "type": "FIELD",
           "name": "command",
+          "content": {
+            "type": "SYMBOL",
+            "name": "text"
+          }
+        }
+      ]
+    },
+    "cwd": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "flag_cwd"
+          },
+          "named": true,
+          "value": "flag"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
           "content": {
             "type": "SYMBOL",
             "name": "text"

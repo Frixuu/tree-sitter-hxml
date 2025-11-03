@@ -93,6 +93,32 @@
     }
   },
   {
+    "type": "cwd",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dce",
     "named": true,
     "fields": {
@@ -205,6 +231,10 @@
         },
         {
           "type": "connect",
+          "named": true
+        },
+        {
+          "type": "cwd",
           "named": true
         },
         {
@@ -649,6 +679,10 @@
     "named": false
   },
   {
+    "type": "--cwd",
+    "named": false
+  },
+  {
     "type": "--dce",
     "named": false
   },
@@ -738,6 +772,10 @@
   },
   {
     "type": "--wait",
+    "named": false
+  },
+  {
+    "type": "-C",
     "named": false
   },
   {

@@ -67,6 +67,20 @@ Connect
     (connect (flag) (text) (number))
 )
 
+===
+CWD
+===
+
+-C directory
+--cwd directory/sub
+
+---
+
+(hxml
+    (cwd (flag) (text))
+    (cwd (flag) (text))
+)
+
 ======
 Define
 ======
